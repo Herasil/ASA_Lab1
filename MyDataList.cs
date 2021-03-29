@@ -10,10 +10,11 @@ namespace ASA_lab1
         //public int Length { get { return length; } }
         public abstract double Head();
         public abstract double Next();
-        //public abstract double getData(int z);
+
+        public abstract double getData(int z);
         public abstract void Swap(int a, double b);
 
-        public T Data;
+        //public Tz Data;
         public void Print(int n)
         {
             Console.Write(" {0:F5} ", Head());

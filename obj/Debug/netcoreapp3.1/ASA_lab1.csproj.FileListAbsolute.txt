@@ -24,3 +24,16 @@ C:\Users\nugni\OneDrive\Desktop\IF9-2\ASA_lab1\ASA_lab1\obj\Debug\netcoreapp3.1\
 C:\Users\nugni\OneDrive\Desktop\IF9-2\ASA_lab1\ASA_lab1\obj\Debug\netcoreapp3.1\ASA_lab1.dll
 C:\Users\nugni\OneDrive\Desktop\IF9-2\ASA_lab1\ASA_lab1\obj\Debug\netcoreapp3.1\ASA_lab1.pdb
 C:\Users\nugni\OneDrive\Desktop\IF9-2\ASA_lab1\ASA_lab1\obj\Debug\netcoreapp3.1\ASA_lab1.genruntimeconfig.cache
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.csprojAssemblyReference.cache
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.AssemblyInfoInputs.cache
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.AssemblyInfo.cs
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.csproj.CoreCompileInputs.cache
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.dll
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.pdb
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.exe
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.deps.json
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.runtimeconfig.json
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.runtimeconfig.dev.json
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.dll
+E:\KTU\ASA\bin\Debug\netcoreapp3.1\ASA_lab1.pdb
+E:\KTU\ASA\obj\Debug\netcoreapp3.1\ASA_lab1.genruntimeconfig.cache
