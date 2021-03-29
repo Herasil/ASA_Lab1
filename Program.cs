@@ -16,8 +16,19 @@ namespace ASA_lab1
         {
             generateDouble(ref generatedNumbers);
             linkedListOperations();
+            arrayOperations();
         }
 
+        public static void arrayOperations()
+        {
+            //generatedNumbers
+        }
+
+        public static void addNumbersToBucketArray()
+        {
+
+
+        }
         public static void linkedListOperations()
         {
             MyDataList buckets = new MyDataList();
@@ -111,26 +122,6 @@ namespace ASA_lab1
                     if (firstNumber == j)
                     {
                         buckets.PushByIndexNode(j,currentNumberInFloat);
-                        break;
-                    }
-                }
-            }
-        }
-
-        public static void addNumbersToBucketLinkedList(ref double[] generatedNumbersBucket, double[] generatedNumbers)
-        {
-            for (int i = 0; i < generatedNumbers.Length; i++)
-            {
-                double currentNumberInFloat = convertNumbersToDouble(generatedNumbers[i]);
-
-                Console.Write(currentNumberInFloat + " ");
-
-                for (int j = 0; j < numberOfBuckets; j++)
-                {
-                    int firstNumber = getFirstNumber(currentNumberInFloat);
-                    if (firstNumber == j)
-                    {
-                        generatedNumbersBucket[j]=(currentNumberInFloat);
                         break;
                     }
                 }
