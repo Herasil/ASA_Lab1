@@ -102,13 +102,60 @@ namespace ASA_lab1
             }
         }
 
+        public MyDataList getListedList(int index)
+        {
+            Head();
+            for (int i = 0; i < Count; i++)
+            {
+                if (index == i)
+                {
+                    return currentNode.list;
+                }
+                Next();
+
+            }
+            return null;
+        }
+
+        public void PushByIndexNode(int index, double data)
+        {
+            Head();
+            for (int i = 0; i < Count; i++)
+            {
+                if (index == i)
+                {
+                    currentNode.list.Push(data);
+                    break;
+                }
+                Next();
+
+            }
+        }
+
 
         public int getCount()
         {
             return Count;
         }
 
+        public void printSurface()
+        {
+            if (headNode != null)
+            {
+                MyLinkedListNode node = headNode;
+                Console.Write(node.data + " >>>> ");
+                node.list.printAllData();
+                Console.WriteLine("\n");
+                while (node.nextNode != null)
+                {
 
+                    node = node.nextNode;
+                    Console.Write(node.data + " >>>> ");
+                    node.list.printAllData();
+                    Console.WriteLine("\n\n");
+                }
+            }
+        }
 
 
         public void printAllData()
@@ -116,7 +163,7 @@ namespace ASA_lab1
             if(headNode != null) { 
             MyLinkedListNode node = headNode;
             Console.Write(node.data + " -> ");
-            while (node.nextNode != null)
+                while (node.nextNode != null)
             {
                
                 node = node.nextNode;
@@ -128,11 +175,13 @@ namespace ASA_lab1
 
         class MyLinkedListNode
         {
+            public MyDataList list { get; set; }
             public MyLinkedListNode nextNode { get; set; }
             public double data { get; set; }
             public MyLinkedListNode(double data)
             {
                 this.data = data;
+                this.list = new MyDataList();
             }
         }
     }

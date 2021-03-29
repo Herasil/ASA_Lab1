@@ -8,35 +8,29 @@ namespace ASA_lab1
     {
         const int min = 10;
         const int max = 1000;
-        const int generatedNumbersToGenerate = 10;
+        const int generatedNumbersToGenerate = 100;
         const int numberOfBuckets = 11;
         static Random rand = new Random();
         static void Main(string[] args)
         {
-            MyDataList[] bucketSort = new MyDataList[numberOfBuckets];
-            //MyDataList<MyDataList>
+
             double[] generatedNumbers = new double[generatedNumbersToGenerate];
-            double[] generatedNumbersBucket = new double[numberOfBuckets];
             generateDouble(ref generatedNumbers);
-       
-            MyDataList[] buckets = new MyDataList[numberOfBuckets];
-            for (int i = 0; i < numberOfBuckets; i++)
-                buckets[i] = new MyDataList();
 
+            MyDataList buckets = new MyDataList();
+            for (double i = 0; i < numberOfBuckets; i++)
+                buckets.Push(i);
 
+            //printLinkedList(buckets);
 
-            Console.WriteLine("Linked List spausdinimai: ");
+            //Console.WriteLine("Linked List spausdinimai: ");
+           
             addNumbersToLinkedList(ref buckets, generatedNumbers);
-            printLinkedList(buckets);
             InsertionSort(ref buckets);
             printLinkedList(buckets);
 
 
 
-            Console.WriteLine("Array spausdinimai: ");
-            printArray(generatedNumbers);
-            Console.WriteLine("");
-            addNumbersToBucket(ref generatedNumbersBucket, generatedNumbers);
 
 
             //InsertionSort(ref generatedNumbersBucket);
@@ -45,17 +39,10 @@ namespace ASA_lab1
         }
 
 
-        public static void printLinkedList(MyDataList[] buckets)
+        public static void printLinkedList(MyDataList buckets)
         {
             Console.WriteLine();
-            for (int i = 0; i < numberOfBuckets; i++)
-            {
-                Console.Write(i + " : ");
-                buckets[i].printAllData();
-                Console.Write("    length: " + buckets[i].getCount());
-                Console.WriteLine();
-
-            }
+            buckets.printSurface();
         }
 
         public static void printArray(double[] generatedNumbers)
@@ -67,11 +54,11 @@ namespace ASA_lab1
             }
         }
 
-        public static void InsertionSort(ref MyDataList[] doubleLinkedList)
+        public static void InsertionSort(ref MyDataList bucketList)
         {
             for (int z = 0; z < numberOfBuckets; z++)
             {
-                MyDataList items = doubleLinkedList[z];
+                MyDataList items = bucketList.getListedList(z);
                 double currentdata;
                 int n = items.getCount();
                 for (int i = 1; i < n; ++i)
@@ -91,31 +78,9 @@ namespace ASA_lab1
 
         }
 
-        //public static void InsertionSortArray(ref double[] generatedNumbers)
-        //{
-        //    for (int z = 0; z < numberOfLinkedLists; z++)
-        //    {
-        //        MyDataList items = doubleLinkedList[z];
-        //        double currentdata;
-        //        int n = items.getCount();
-        //        for (int i = 1; i < n; ++i)
-        //        {
-        //            currentdata = items.getData(i);
-        //            int j = i - 1;
+  
 
-
-        //            while (j >= 0 && items.getData(j) > currentdata)
-        //            {
-        //                items.Swap(j + 1, items.getData(j));
-        //                j = j - 1;
-        //            }
-        //            items.Swap(j + 1, currentdata);
-        //        }
-        //    }
-
-        //}
-
-        public static void addNumbersToLinkedList(ref MyDataList[] buckets, double[] generatedNumbers)
+        public static void addNumbersToLinkedList(ref MyDataList buckets, double[] generatedNumbers)
         {
             for (int i = 0; i < generatedNumbers.Length; i++)
             {
@@ -128,7 +93,7 @@ namespace ASA_lab1
                     int firstNumber = getFirstNumber(currentNumberInFloat);
                     if (firstNumber == j)
                     {
-                        buckets[j].Push(currentNumberInFloat);
+                        buckets.PushByIndexNode(j,currentNumberInFloat);
                         break;
                     }
                 }
