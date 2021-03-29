@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ASA_lab1
 {
-    abstract class DataList<T>
+    abstract class DataList
     {
         //protected int length;
         //public int Length { get { return length; } }
@@ -23,7 +23,7 @@ namespace ASA_lab1
         }
     }
 
-    class MyDataList : DataList<T>
+    class MyDataList : DataList
     {
        
         MyLinkedListNode headNode;
