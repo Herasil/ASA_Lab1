@@ -8,15 +8,18 @@ namespace ASA_lab1
     {
         const int min = 10;
         const int max = 1000;
-        const int generatedNumbersToGenerate = 100;
+        const int generatedNumbersToGenerate = 10;
         const int numberOfBuckets = 11;
         static Random rand = new Random();
+        static double[] generatedNumbers = new double[generatedNumbersToGenerate];
         static void Main(string[] args)
         {
-
-            double[] generatedNumbers = new double[generatedNumbersToGenerate];
             generateDouble(ref generatedNumbers);
+            linkedListOperations();
+        }
 
+        public static void linkedListOperations()
+        {
             MyDataList buckets = new MyDataList();
             for (double i = 0; i < numberOfBuckets; i++)
                 buckets.Push(i);
@@ -24,13 +27,16 @@ namespace ASA_lab1
             //printLinkedList(buckets);
 
             //Console.WriteLine("Linked List spausdinimai: ");
-           
+
             addNumbersToLinkedList(ref buckets, generatedNumbers);
-            InsertionSort(ref buckets);
+            InsertionSortLinkedList(ref buckets);
             printLinkedList(buckets);
+            //foreach (double item in generatedNumbers)
+            //{
+            //    Console.WriteLine(item + ", ");
+            //}
 
-
-
+            reverseConvert(buckets);
 
 
             //InsertionSort(ref generatedNumbersBucket);
@@ -38,7 +44,20 @@ namespace ASA_lab1
             //InsertionSort(generatedNumbers[]);
         }
 
+        public static void reverseConvert(MyDataList buckets)
+        {
+            for (int i = 0; i < numberOfBuckets; i++)
+            {
+                MyDataList bucket = buckets.getListedList(i);
+                for (int j = 0; j < bucket.getCount(); j++)
+                {
+                    double reversedValue = convertDoubleToNumbers(bucket.getData(j));
+                    Console.Write(reversedValue + ", ");
+                }
+                Console.WriteLine();
+            }
 
+        }
         public static void printLinkedList(MyDataList buckets)
         {
             Console.WriteLine();
@@ -54,7 +73,7 @@ namespace ASA_lab1
             }
         }
 
-        public static void InsertionSort(ref MyDataList bucketList)
+        public static void InsertionSortLinkedList(ref MyDataList bucketList)
         {
             for (int z = 0; z < numberOfBuckets; z++)
             {
@@ -78,8 +97,6 @@ namespace ASA_lab1
 
         }
 
-  
-
         public static void addNumbersToLinkedList(ref MyDataList buckets, double[] generatedNumbers)
         {
             for (int i = 0; i < generatedNumbers.Length; i++)
@@ -100,7 +117,7 @@ namespace ASA_lab1
             }
         }
 
-        public static void addNumbersToBucket(ref double[] generatedNumbersBucket, double[] generatedNumbers)
+        public static void addNumbersToBucketLinkedList(ref double[] generatedNumbersBucket, double[] generatedNumbers)
         {
             for (int i = 0; i < generatedNumbers.Length; i++)
             {
@@ -120,7 +137,6 @@ namespace ASA_lab1
             }
         }
 
-
         public static void generateDouble(ref double[] numArray)
         {
             for (int i = 0; i < generatedNumbersToGenerate; i++)
@@ -133,6 +149,11 @@ namespace ASA_lab1
         {
             return Math.Round(((numberToConvert - min) / (max - min)), 2);
 
+        }
+        
+        public static double convertDoubleToNumbers(double doubleToConvert)
+        {
+            return Math.Round(((doubleToConvert * (max - min) + min)), 2);
         }
 
         public static int getFirstNumber(double number)
