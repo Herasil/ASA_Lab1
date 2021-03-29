@@ -15,20 +15,62 @@ namespace ASA_lab1
         static void Main(string[] args)
         {
             generateDouble(ref generatedNumbers);
-            linkedListOperations();
+            //linkedListOperations();
             arrayOperations();
         }
 
         public static void arrayOperations()
         {
-            //generatedNumbers
+            double[,] buckets = new double[numberOfBuckets,generatedNumbersToGenerate];
+            addNumbersToBucketArray(ref buckets, generatedNumbers);
+            for (int i = 0; i < numberOfBuckets; i++)
+            {
+                Console.Write(i + ".  ");
+                for (int j = 0; j < generatedNumbersToGenerate; j++)
+                {
+                    if (buckets[i,j]!=0)
+                    {
+                        Console.Write( buckets[i, j] + " ---> ");
+                    }
+
+                }
+                Console.WriteLine();
+            }
         }
 
-        public static void addNumbersToBucketArray()
+        public static void addNumbersToBucketArray(ref double[,] buckets, double[] generatedNumbers)
         {
+            for (int i = 0; i < generatedNumbers.Length; i++)
+            {
+                double convertedNumber = convertNumbersToDouble(generatedNumbers[i]);
 
-
+                Console.Write(convertedNumber + " ");
+                for (int j = 0; j < numberOfBuckets; j++)
+                {
+                    int firstNumber = getFirstNumber(convertedNumber);
+                    if (firstNumber == j)
+                    {
+                        int indx2 = returnIndex(buckets,j);
+                        buckets[j,indx2] = convertedNumber;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine();
         }
+        public static int returnIndex(double[,] buckets, int row)
+        {
+            double[] newArray = new double[generatedNumbersToGenerate];
+            for (int i = 0; i < generatedNumbersToGenerate; i++)
+            {
+                if (buckets[row,i]==0)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public static void linkedListOperations()
         {
             MyDataList buckets = new MyDataList();
