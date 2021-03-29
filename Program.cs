@@ -8,59 +8,62 @@ namespace ASA_lab1
     {
         const int min = 10;
         const int max = 1000;
-        const int numbersToGenerate = 10;
+        const int generatedNumbersToGenerate = 10;
         const int numberOfBuckets = 11;
         static Random rand = new Random();
         static void Main(string[] args)
         {
             MyDataList[] bucketSort = new MyDataList[numberOfBuckets];
             //MyDataList<MyDataList>
-            double[] numbers = new double[numbersToGenerate];
-            double[] numbersBucket = new double[numberOfBuckets];
-            generateDouble(ref numbers);
-            MyDataList[] doubleNumbers = new MyDataList[numberOfBuckets];
+            double[] generatedNumbers = new double[generatedNumbersToGenerate];
+            double[] generatedNumbersBucket = new double[numberOfBuckets];
+            generateDouble(ref generatedNumbers);
+       
+            MyDataList[] buckets = new MyDataList[numberOfBuckets];
             for (int i = 0; i < numberOfBuckets; i++)
-                doubleNumbers[i] = new MyDataList();
+                buckets[i] = new MyDataList();
 
 
 
             Console.WriteLine("Linked List spausdinimai: ");
-            addNumbersToLinkedList(ref doubleNumbers, numbers);
-            printLinkedList(doubleNumbers);
-            InsertionSort(ref doubleNumbers);
-            printLinkedList(doubleNumbers);
+            addNumbersToLinkedList(ref buckets, generatedNumbers);
+            printLinkedList(buckets);
+            InsertionSort(ref buckets);
+            printLinkedList(buckets);
 
 
 
             Console.WriteLine("Array spausdinimai: ");
-            printArray(numbers);
+            printArray(generatedNumbers);
             Console.WriteLine("");
-            addNumbersToBucket(ref numbersBucket, numbers);
-            //InsertionSort(ref numbersBucket);
-            //printArray(numbers);
-            //InsertionSort(numbers[]);
+            addNumbersToBucket(ref generatedNumbersBucket, generatedNumbers);
+
+
+            //InsertionSort(ref generatedNumbersBucket);
+            //printArray(generatedNumbers);
+            //InsertionSort(generatedNumbers[]);
         }
 
 
-        public static void printLinkedList(MyDataList[] doubleNumbers)
+        public static void printLinkedList(MyDataList[] buckets)
         {
             Console.WriteLine();
             for (int i = 0; i < numberOfBuckets; i++)
             {
                 Console.Write(i + " : ");
-                doubleNumbers[i].printAllData();
-                Console.Write("    length: " + doubleNumbers[i].getCount());
+                buckets[i].printAllData();
+                Console.Write("    length: " + buckets[i].getCount());
                 Console.WriteLine();
 
             }
         }
 
-        public static void printArray(double[] numbers)
+        public static void printArray(double[] generatedNumbers)
         {
             Console.WriteLine();
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                Console.Write(numbers[i] + " ");
+                Console.Write(generatedNumbers[i] + " ");
             }
         }
 
@@ -88,7 +91,7 @@ namespace ASA_lab1
 
         }
 
-        //public static void InsertionSortArray(ref double[] numbers)
+        //public static void InsertionSortArray(ref double[] generatedNumbers)
         //{
         //    for (int z = 0; z < numberOfLinkedLists; z++)
         //    {
@@ -112,11 +115,11 @@ namespace ASA_lab1
 
         //}
 
-        public static void addNumbersToLinkedList(ref MyDataList[] doubleNumbers, double[] numbers)
+        public static void addNumbersToLinkedList(ref MyDataList[] buckets, double[] generatedNumbers)
         {
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                double currentNumberInFloat = convertNumbersToDouble(numbers[i]);
+                double currentNumberInFloat = convertNumbersToDouble(generatedNumbers[i]);
 
                 Console.Write(currentNumberInFloat + " ");
 
@@ -125,18 +128,18 @@ namespace ASA_lab1
                     int firstNumber = getFirstNumber(currentNumberInFloat);
                     if (firstNumber == j)
                     {
-                        doubleNumbers[j].Push(currentNumberInFloat);
+                        buckets[j].Push(currentNumberInFloat);
                         break;
                     }
                 }
             }
         }
 
-        public static void addNumbersToBucket(ref double[] numbersBucket, double[] numbers)
+        public static void addNumbersToBucket(ref double[] generatedNumbersBucket, double[] generatedNumbers)
         {
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                double currentNumberInFloat = convertNumbersToDouble(numbers[i]);
+                double currentNumberInFloat = convertNumbersToDouble(generatedNumbers[i]);
 
                 Console.Write(currentNumberInFloat + " ");
 
@@ -145,7 +148,7 @@ namespace ASA_lab1
                     int firstNumber = getFirstNumber(currentNumberInFloat);
                     if (firstNumber == j)
                     {
-                        numbersBucket[j]=(currentNumberInFloat);
+                        generatedNumbersBucket[j]=(currentNumberInFloat);
                         break;
                     }
                 }
@@ -155,7 +158,7 @@ namespace ASA_lab1
 
         public static void generateDouble(ref double[] numArray)
         {
-            for (int i = 0; i < numbersToGenerate; i++)
+            for (int i = 0; i < generatedNumbersToGenerate; i++)
             {
                 numArray[i] = (rand.NextDouble() * (max - min) + min);
             }
