@@ -8,9 +8,10 @@ namespace ASA_lab1
     {
         const int min = 10;
         const int max = 1000;
-        const int generatedNumbersToGenerate = 10;
+        const int generatedNumbersToGenerate = 11;
         const int numberOfBuckets = 11;
         static Random rand = new Random();
+        static RB redBlack = new RB();
         static double[] generatedNumbers = new double[generatedNumbersToGenerate];
         static void Main(string[] args)
         {
@@ -23,19 +24,60 @@ namespace ASA_lab1
         {
             double[,] buckets = new double[numberOfBuckets,generatedNumbersToGenerate];
             addNumbersToBucketArray(ref buckets, generatedNumbers);
+            printDoubleArray(buckets);
+            Console.WriteLine();
+            InsertionSortArray(ref buckets);
+        }
+        public static void printDoubleArray(double[,] buckets)
+        {
             for (int i = 0; i < numberOfBuckets; i++)
             {
                 Console.Write(i + ".  ");
                 for (int j = 0; j < generatedNumbersToGenerate; j++)
                 {
-                    if (buckets[i,j]!=0)
+                    
+                    if (buckets[i, j] != 0)
                     {
                         Console.Write( buckets[i, j] + " ---> ");
                     }
-
                 }
                 Console.WriteLine();
             }
+        }
+
+        public static void InsertionSortArray(ref double[,] buckets)
+        {
+            for (int i = 0; i < numberOfBuckets; i++)
+            {
+                double[] items = returnArrayRow(buckets,i);
+                double currentdata;
+                int n = items.Length;
+                for (int z = 1; z < n; ++z)
+                {
+                    currentdata = items[z];
+                    int j = z - 1;
+
+
+                    while (j >= 0 && items[j] > currentdata)
+                    {
+                        items[j + 1] = items[j];
+                        j = j - 1;
+                    }
+                    items[j + 1] = currentdata;
+                }
+                Console.Write(i + ".  ");
+                printArray(items);
+            }
+
+        }
+        public static double[] returnArrayRow(double[,] buckets, int row)
+        {
+            double[] newArray = new double[generatedNumbersToGenerate];
+            for (int i = 0; i < generatedNumbersToGenerate; i++)
+            {
+                newArray[i] = buckets[row, i];
+            }
+            return newArray;
         }
 
         public static void addNumbersToBucketArray(ref double[,] buckets, double[] generatedNumbers)
@@ -70,7 +112,6 @@ namespace ASA_lab1
             }
             return -1;
         }
-
         public static void linkedListOperations()
         {
             MyDataList buckets = new MyDataList();
@@ -79,7 +120,7 @@ namespace ASA_lab1
 
             //printLinkedList(buckets);
 
-            //Console.WriteLine("Linked List spausdinimai: ");
+            Console.WriteLine("Linked List spausdinimai: ");
 
             addNumbersToLinkedList(ref buckets, generatedNumbers);
             InsertionSortLinkedList(ref buckets);
@@ -91,7 +132,8 @@ namespace ASA_lab1
 
             reverseConvert(buckets);
 
-
+            //redBlackTreeLinkedList(generatedNumbers);
+            
             //InsertionSort(ref generatedNumbersBucket);
             //printArray(generatedNumbers);
             //InsertionSort(generatedNumbers[]);
@@ -119,11 +161,12 @@ namespace ASA_lab1
 
         public static void printArray(double[] generatedNumbers)
         {
-            Console.WriteLine();
             for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                Console.Write(generatedNumbers[i] + " ");
+                if (generatedNumbers[i]!=0)
+                Console.Write(generatedNumbers[i] + " ---> ");
             }
+            Console.WriteLine();
         }
 
         public static void InsertionSortLinkedList(ref MyDataList bucketList)
