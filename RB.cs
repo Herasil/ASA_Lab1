@@ -47,58 +47,71 @@ namespace ASA_lab1
             if (x.right != null) { x.right.parent = y; }
             if (x != null) { x.parent = y.parent; }
             if (y.parent == null) { root = x; }
-            if (y == y.parent.right) { y.parent.right = x; }
+            if (y == y.parent.right && y.parent != null) { y.parent.right = x; }
             if (y == y.parent.left) { y.parent.left = x; }
             x.right = y;
             if (y != null) { y.parent = x; }
         }
-        
+        //public void DisplayTree()
+        //{
+        //    if (root == null)
+        //    {
+        //        Console.WriteLine("Medis tuščias.");
+        //        return;
+        //    }
+        //    if (root != null)
+        //    {
+        //        InOrderDisplay(root);
+        //    }
+        //}
         public StringBuilder Print(TreeNode x, int tab = 0, int pos = 2)
         {
             var sb = new StringBuilder();
             if (x != null)
             {
                 sb.Append(Print(x.right, tab + pos, pos));
-                sb.Append(new string(' ', tab)).Append($"{x.ToString()}({OrNotNil((TreeNode)x.parent)},{OrNotNil((TreeNode)x.left)},{OrNotNil((TreeNode)x.right)})").AppendLine();
+                sb.Append(new string(' ', tab)).Append($"{ x.color + " " + x.ToString()}({OrNotNil((TreeNode)x.parent)},{OrNotNil((TreeNode)x.left)},{OrNotNil((TreeNode)x.right)})").AppendLine();
                 sb.Append(Print(x.left, tab + pos, pos));
             }
             return sb;
         }
+
         private string OrNotNil(TreeNode x)
         {
             return (x == null) ? "null" : x.data.ToString();
         }
-        
-        //public TreeNode Find(int key)
+        //public void InOrderDisplay(TreeNode current)
         //{
-        //    bool isFound = false;
-        //    TreeNode temp = root;
-        //    TreeNode item = null;
-        //    while (!isFound)
+        //    if (current != null)
         //    {
-        //        if (temp == null)
-        //            break;
-        //        if (key < temp.data)
-        //            temp = temp.left;
-        //        if (key > temp.data)
-        //            temp = temp.right;
-        //        if (key == temp.data)
-        //        {
-        //            isFound = true;
-        //            item = temp;
-        //        }
-        //    }
-        //    if (isFound)
-        //    {
-        //        Console.WriteLine("{0} buvo rastas.", key);
-        //        return temp;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("{0} nebuvo rastas.", key);
-        //        return null;
+        //        InOrderDisplay(current.left);
+        //        Console.Write("({0}) ", current.data);
+        //        InOrderDisplay(current.right);
         //    }
         //}
+        public TreeNode Find(double key)
+        {
+            TreeNode temp = root;
+            while (temp != null)
+            {
+                if (key == temp.data)
+                {
+                    break;
+                }
+                if (key < temp.data)
+                {
+                    temp = temp.left;
+                }
+                else
+                {
+                    temp = temp.right;
+                }
+
+            }
+            Console.WriteLine(temp == null ? key + " Elementas nerastas." : temp + " Buvo rastas.");
+            return temp;
+        }
+
         public void Insert(double item)
         {
             TreeNode newItem = new TreeNode(item);
