@@ -18,11 +18,15 @@ namespace ASA_lab1
             generateDouble(ref generatedNumbers);
             //linkedListOperations();
             //arrayOperations();
+            redBlackTreeOperations();
+        }
+
+        public static void redBlackTreeOperations()
+        {
             RB redBlack = new RB();
-            //redBlack.Insert(69.420);
             for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                if (i%2==0)
+                if (i % 2 == 0)
                 {
                     redBlack.Insert(generatedNumbers[i]);
                 }
@@ -30,11 +34,9 @@ namespace ASA_lab1
             Console.WriteLine(redBlack.Print(redBlack.root));
             for (int i = 0; i < generatedNumbers.Length; i++)
             {
-                //Console.WriteLine(generatedNumbers[i]);
                 redBlack.Find(generatedNumbers[i]);
             }
         }
-
         public static void arrayOperations()
         {
             double[,] buckets = new double[numberOfBuckets,generatedNumbersToGenerate];

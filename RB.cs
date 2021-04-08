@@ -52,18 +52,7 @@ namespace ASA_lab1
             x.right = y;
             if (y != null) { y.parent = x; }
         }
-        //public void DisplayTree()
-        //{
-        //    if (root == null)
-        //    {
-        //        Console.WriteLine("Medis tuščias.");
-        //        return;
-        //    }
-        //    if (root != null)
-        //    {
-        //        InOrderDisplay(root);
-        //    }
-        //}
+        
         public StringBuilder Print(TreeNode x, int tab = 0, int pos = 2)
         {
             var sb = new StringBuilder();
@@ -80,15 +69,7 @@ namespace ASA_lab1
         {
             return (x == null) ? "null" : x.data.ToString();
         }
-        //public void InOrderDisplay(TreeNode current)
-        //{
-        //    if (current != null)
-        //    {
-        //        InOrderDisplay(current.left);
-        //        Console.Write("({0}) ", current.data);
-        //        InOrderDisplay(current.right);
-        //    }
-        //}
+        
         public TreeNode Find(double key)
         {
             TreeNode temp = root;
